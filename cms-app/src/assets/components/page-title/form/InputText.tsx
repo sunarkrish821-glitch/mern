@@ -9,7 +9,7 @@ export interface IInputTextProps {
 
 
 
-export const InputText = ({type, name, placeholder="Enter your Input........." className=''}: Readonly<IInputTextProps>) => {
+export const InputText = ({type, name, placeholder="Enter your Input.........", className=''}: Readonly<IInputTextProps>) => {
     return{
          <input 
          className= { 'w-full border border-gray-200 p-2 rounded-md shadow ${className}'}
