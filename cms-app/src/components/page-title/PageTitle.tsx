@@ -1,8 +1,5 @@
 import type React from "react";
 
-
-
-
 interface IPageTitleProps {
   pageTitle: string,
   className?: string,
