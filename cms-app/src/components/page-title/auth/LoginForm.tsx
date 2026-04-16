@@ -16,7 +16,7 @@ export const LoginForm = () => {
     const navigate = useNavigate();
     const { login } = useAuth()
 
-    const {control, handleSubmit, formState:{errors}} = useForm<ICredentials>({
+    const {control, handleSubmit, formState:{errors, isSubmitting}} = useForm<ICredentials>({
         defaultValues: {
             username: "",
             password: "",
@@ -27,8 +27,12 @@ export const LoginForm = () => {
     const submitForm = async(data: ICredentials) => {
         try {
             const userDetail = await login(data);
+            if(userDetail) {
                  navigate("/"+userDetail?.role)
-                } catch (exception: unknown) {
+            } else {
+                throw{message:"Error Login in"}
+            }
+        } catch (exception: unknown) {
                     toast.error("Invalid or Wrong Credentials");
                     console.log(exception);
         }
@@ -58,8 +62,8 @@ export const LoginForm = () => {
     </div>
 
     <div className="flex w-full gap-3">
-         <CancelButton> Cancel </CancelButton>
-            <SubmitButton> Login </SubmitButton>
+         <CancelButton disabled={isSubmitting}> Cancel </CancelButton>
+            <SubmitButton disabled={isSubmitting}> Login </SubmitButton>
     </div>
         </form>
     )

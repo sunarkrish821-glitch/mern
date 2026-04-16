@@ -4,20 +4,39 @@ import ForgetPasswordPage from "../pages/auth/ForgetPassword";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import NotFound from "../pages/errors/NotFound";
 import AdminLayout from "../pages/layouts/AdminLayout";
+import CheckLogin from "../components/page-title/auth/CheckLogin";
+import ListAllProducts from "../pages/products/ListAllProducts";
 
 
 const router = createBrowserRouter([
     {path: "/", element: <LoginPage />},
     {path: "/forget-password", Component: ForgetPasswordPage},
 
-    {path: "/admin", element: (<AdminLayout/>),children: [
+    {path: "/admin", 
+    element: (
+    <CheckLogin allowed={'admin'}>
+        <AdminLayout/>
+    </CheckLogin>),
+    children: [
        {index: true, element:<>Admin Dahboard</> },
-    {path: "products", element: <>Admin Products</> },
+    
+    //     CRUD Operation
+    {path: "products", element: <ListAllProducts/> },
     {path: "users", element: <>Admin Users</> },
     {path: "orders", element: <>Admin Orders</> },
      {path: "*", element: <NotFound url="/admin"/>},
     ]},
 
+    {path: "/user", element: <CheckLogin allowed="user">
+        <>User Layout</>
+    </CheckLogin>},
+
+
+        {path: "*", element: <NotFound />}
+])
+export default function RouterConfig() {
+ return <RouterProvider router={router}/>;
+}
     
 
 
@@ -31,13 +50,12 @@ const router = createBrowserRouter([
 
     // error routes
 
-    {path: "*", element: <NotFound />}
 
 
-])
 
 
-export default function RouterConfig() {
+
+
     // // Declarative mode of routing
     // return (
     //     <>
@@ -53,5 +71,4 @@ export default function RouterConfig() {
 
 
     // Data Mode of routing
-    return <RouterProvider router={router}/>;
-}
+   

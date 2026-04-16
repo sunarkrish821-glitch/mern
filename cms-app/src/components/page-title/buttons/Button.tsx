@@ -7,12 +7,12 @@ export interface IButtonProps {
 }
 
 export const SubmitButton = ({ 
-    className = ' hover:bg-teal-800/90  bg-teal-800 ',
+    className = ' ',
      children, 
-     disabled }: Readonly<IButtonProps>) => {
+     disabled=false }: Readonly<IButtonProps>) => {
     return (
         <button 
-        className={`w-full text-white rounded-md cursor-pointer transition p-2 ${className}`}
+        className={`w-full text-white rounded-md cursor-pointer transition p-2 hover:bg-teal-800/90  bg-teal-800 disabled:bg-teal-800/50 disabled:hover:bg-teal-800/40 disabled:cursor-not-allowed ${className}`}
         type="submit"
         disabled={disabled}
         >
@@ -24,10 +24,10 @@ export const SubmitButton = ({
 
 
 
-export const CancelButton = ({ className = '', children, disabled }: Readonly<IButtonProps>) => {
+export const CancelButton = ({ className = '', children, disabled=false }: Readonly<IButtonProps>) => {
     return (
         <button 
-        className={`w-full text-white rounded-md cursor-pointer transition hover:bg-red-800/90 p-2 bg-red-800 ${className}`}
+        className={`w-full text-white rounded-md cursor-pointer transition hover:bg-red-800/90 p-2 bg-red-800 disabled:bg-red-800/50 disabled:hover:bg-red-800/40 disabled:cursor-not-allowed ${className}`}
         type="reset"
         disabled={disabled}
         >

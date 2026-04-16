@@ -19,7 +19,7 @@ const AuthProvider = ({children}:Readonly<{ children:ReactNode }>) => {
          } catch (exception) {
             console.log(exception)
          }
-      }
+     }
 
       const getLoggedInUser = async () => {
          try{

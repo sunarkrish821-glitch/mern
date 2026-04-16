@@ -11,6 +11,23 @@ const axiosInstance = axios.create({
     responseType: "json",
 });
 
+    axiosInstance.interceptors.request.use((request) => {
+    const token = Cookies.get("_at_62")
+    if(token) {
+        request.headers.Authorization = "Bearer " + token
+    }
+    return request;
+})
+        axiosInstance.interceptors.response.use(
+    (response) => {
+        return response.data;
+    },
+    (exception) => {
+        // TODO: refresh token implementation
+       throw exception.response || {message: "An error occurred. Please try again."};
+    }
+);
+export default axiosInstance
 
 
 // TODO: interceptors (2 types of API)
@@ -27,27 +44,8 @@ const axiosInstance = axios.create({
 //     return config;
 // })
 
-axiosInstance.interceptors.request.use((request) => {
-    const token = Cookies.get("_at_62")
-    if(token) {
-        request.headers.Authorization = "Bearer " + token
-    }
-    return request;
-})
+
 
 
 // API Server ---------> Internet ----------> Axios ------------->Interceptors(response)[Optional] ---------> Components(UI)
 
-axiosInstance.interceptors.response.use(
-    (response) => {
-        // Handle successful responses
-        return response.data;
-    },
-    (exception) => {
-        // Handle errors
-       throw exception.response || {message: "An error occurred. Please try again."};
-    }
-);
-
-
-export default axiosInstance
