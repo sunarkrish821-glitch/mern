@@ -1,10 +1,14 @@
 import { NavLink } from "react-router"
 import { PageTitle } from "../../components/page-title/PageTitle"
 import { LuPlus } from "react-icons/lu"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { IoGridSharp } from "react-icons/io5"
 import { FaThList } from "react-icons/fa"
 
+// import { mockProduct } from "./data"
+import SingleProductGridItem from "../../components/page-title/products/SingleProductGridItem"
+import SingleProductSkeleton from "../../components/page-title/products/SingleProductSkeleton"
+import axiosInstance from "../../config/apiClient"
 
 
          export interface IProductDetails {
@@ -29,7 +33,7 @@ import { FaThList } from "react-icons/fa"
   warrantyInformation: string,
   shippingInformation: string,
   availabilityStatus: string,
-  revsews: [
+  reviews: [
     {
       rating: number,
       comment: string,
@@ -50,12 +54,62 @@ import { FaThList } from "react-icons/fa"
   images: string[],
 }
 
+export interface IProductListResponse {limit: number, products: Array<IProductDetails>, skip: number, total: number}
+
 export default function ListAllProducts() {
     const [viewType, setViewType] = useState<string>("grid")
+
+    const [loading, setLoading] = useState<boolean>(true);
+    const [products, setProducts] = useState<Array<IProductDetails>>()
+
+
+useEffect(() => {
+    const getAllProducts = async() => {
+        try {
+            const response = await axiosInstance.get('/products', {
+                params: {
+                    limit: 40,
+                    skip: 0,
+                    select: "id,title,description,category,price,discountPercentage,rating,brand,thumbnail"
+                }
+            }) as IProductListResponse
+            setProducts(response.products)
+        } catch(exception) {
+            console.log(exception)
+        } finally {
+            setLoading(false)
+        }
+    }
+    getAllProducts()
+}, [])
+
+
+
+
+  //   const getAllProducts = async() => {
+  //    try{
+  //         const response = await axiosInstance.get('/products', {
+  //           params: {
+  //             limit: 40,
+  //             skip: 0,
+  //             select: "id,title,description,category,price,discountPercentage,rating,brand,thumbnail"
+  //           }
+  //         }) as IProductListResponse
+  //        setLoading(false)
+  //        setProducts(response.products)
+  //    } catch(exception) {
+  //       console.log(exception)
+  //    }
+  //   }
+  // useEffect(() => {
+  //    getAllProducts()
+  // }, [])
+
+
     return(
-    <section className= "bg-gray-200 flex flex-col gap-5 p-5">
+    <section className= "bg-gray-100 flex flex-col gap-5 p-5">
         <div className="flex w-full justify-between">
-            <PageTitle className="text-teal-950">All Product Lists</PageTitle>
+           <PageTitle pageTitle="Products" className="...">Products</PageTitle>
             <div className="flex gap-2 w-2/3 justify-end">
                 <input type="search"  
                 className= "w-2/3 border-gray-200 shadow bg-gray-50 rounded-md p-2 " 
@@ -84,16 +138,24 @@ export default function ListAllProducts() {
         </div>
 
         <div className= {`grid ${viewType === 'grid' ? 'grid-cols-4' : 'grid-cols-1'} gap-2`}>
-            <div className="border bg-white">1</div>
-            <div className="border bg-white">2</div>
-            <div className="border bg-white">3</div>
-            <div className="border bg-white">4</div>
- 
-            <div className="border bg-white">1</div>
-            <div className="border bg-white">2</div>
-            <div className="border bg-white">3</div>
-            <div className="border bg-white">4</div>
+            {
+              loading ?
+              (
+                [...Array(12)].map((_, index: number) => {
+                  return <SingleProductSkeleton key={index}/>
+                })
+              ) : (
+                products ? products.map((prod: IProductDetails, i: number) => {
+               return<SingleProductGridItem product={prod} key={i}/>
+                    
+}) : <>No Products Found</>
+              )
+            }
         </div>
      
-    </section>)
+    </section>
+    )
 }
+
+
+
