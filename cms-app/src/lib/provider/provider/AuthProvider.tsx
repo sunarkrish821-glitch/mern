@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react"
-import AuthContext from "../../context/AuthContext"
-import type { ICredentials, ILoginResponse, IUserDetail } from "../../types/auth-type"
-import axiosInstance from "../../config/apiClient"
+import AuthContext from "../../../context/AuthContext"
+import type { ICredentials, ILoginResponse, IUserDetail } from "../../../types/auth-type"
+import axiosInstance from "../../../config/apiClient"
 import Cookies from "js-cookie"
 
 const AuthProvider = ({children}:Readonly<{ children:ReactNode }>) => {
@@ -29,7 +29,7 @@ const AuthProvider = ({children}:Readonly<{ children:ReactNode }>) => {
          } catch (exception) {
             console.log(exception)
          }  finally {
-        setLoading(false)  // ✅ add this here
+        setLoading(false)  
     }
       }
 

@@ -162,3 +162,31 @@ to build documentation
               A
          B          C
     D        D F        G
+
+
+
+
+    ### Product Create requests:
+  title: string,
+  description: string,
+  category: string,
+  price: number,
+  discountPercentage: number,
+  stock: number,
+  tags: string[],
+  brand: string,
+  sku: string,
+  weight: number,
+  dimensions: {
+    width: number,
+    height: number,
+    depth: number
+  },
+  warrantyInformation: string,
+  shippingInformation: string,
+  availabilityStatus: string,
+  returnPolicy: string,
+  minimumOrderQuantity: number,
+  thumbnail: string,
+  images: string[],
+}

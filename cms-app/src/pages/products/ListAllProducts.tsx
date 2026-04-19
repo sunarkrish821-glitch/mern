@@ -13,45 +13,45 @@ import axiosInstance from "../../config/apiClient"
 
          export interface IProductDetails {
  
-  id: number,
-  title: string,
-  description: string,
-  category: string,
-  price: number,
-  discountPercentage: number,
-  rating: number,
-  stock: number,
-  tags: string[],
-  brand: string,
-  sku: string,
-  weight: number,
-  dimensions: {
-    width: number,
-    height: number,
-    depth: number
-  },
-  warrantyInformation: string,
-  shippingInformation: string,
-  availabilityStatus: string,
-  reviews: [
-    {
-      rating: number,
-      comment: string,
-      date: string,
-      reviewerName: string,
-      reviewerEmail: string,
-    }
-  ],
-  returnPolicy: string,
-  minimumOrderQuantity: number,
-  meta: {
-    createdAt: string,
-    updatedAt: string,
-    barcode: string,
-    qrCode: string,
-  },
-  thumbnail: string,
-  images: string[],
+            id: number,
+            title: string,
+            description: string,
+            category: string,
+            price: number,
+            discountPercentage: number,
+            rating: number,
+            stock: number,
+            tags: string[],
+            brand: string,
+            sku: string,
+            weight: number,
+            dimensions: {
+              width: number,
+              height: number,
+              depth: number
+            },
+            warrantyInformation: string,
+            shippingInformation: string,
+            availabilityStatus: string,
+            reviews: [
+              {
+                rating: number,
+                comment: string,
+                date: string,
+                reviewerName: string,
+                reviewerEmail: string,
+              }
+            ],
+            returnPolicy: string,
+            minimumOrderQuantity: number,
+            meta: {
+              createdAt: string,
+              updatedAt: string,
+              barcode: string,
+              qrCode: string,
+            },
+            thumbnail: string,
+            images: string[],
 }
 
 export interface IProductListResponse {limit: number, products: Array<IProductDetails>, skip: number, total: number}
@@ -82,29 +82,6 @@ useEffect(() => {
     }
     getAllProducts()
 }, [])
-
-
-
-
-  //   const getAllProducts = async() => {
-  //    try{
-  //         const response = await axiosInstance.get('/products', {
-  //           params: {
-  //             limit: 40,
-  //             skip: 0,
-  //             select: "id,title,description,category,price,discountPercentage,rating,brand,thumbnail"
-  //           }
-  //         }) as IProductListResponse
-  //        setLoading(false)
-  //        setProducts(response.products)
-  //    } catch(exception) {
-  //       console.log(exception)
-  //    }
-  //   }
-  // useEffect(() => {
-  //    getAllProducts()
-  // }, [])
-
 
     return(
     <section className= "bg-gray-100 flex flex-col gap-5 p-5">

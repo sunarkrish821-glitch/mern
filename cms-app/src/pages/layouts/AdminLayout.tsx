@@ -22,7 +22,7 @@ export default function AdminLayout() {
         <nav>
          <ul className="flex flex-col gap-2">
             <li className="w-full bg-gray-100 p-2 shadow-lg rounded text-lg font-semibold">
-               <NavLink className="flex items-center justify-center gap-2">
+               <NavLink to="/" className="flex items-center justify-center gap-2">
                  <LuCog className="text-gray-700 size-6"/>
                 Dashboard
                </NavLink>
