@@ -190,3 +190,42 @@ to build documentation
   thumbnail: string,
   images: string[],
 }
+
+
+
+````jsx
+  // Import at top of your file
+export interface IComponentNameProps{
+   props1: datatype,
+   props2?: dataType
+}
+
+export default function ComponentName({props1, props2=defaultValue};
+   const params = useParams()
+   const [query, setQuery] = useSearchParams()
+   const [data, setData] = useState()
+
+   // state define
+  const networkCaller = async () => {
+   // access the API server for data
+  }
+
+  useEffect(()=>{
+ networkCaller()
+  }, [])
+
+   return(
+      <>
+      Component's UI
+      </>
+   )
+)
+
+
+
+
+##  Redux (State Management => Volatile)
+  - Hydrated vs Dehydrated
+  - 3 component
+    - Action(UI-react Application) - (global <small states>) - Reducers (States and Action)
+    - 

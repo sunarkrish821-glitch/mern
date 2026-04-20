@@ -2,6 +2,7 @@
 import { useParams } from "react-router";
 import { useProduct } from "../../lib/provider/hook/product-hook";
 import { useEffect } from "react";
+import SingleProductDetail from "./SingleProductDetail";
 // import ProductContext from "../../context/ProductContext";
 
 
@@ -57,9 +58,12 @@ export default function ProductDetail() {
 
   useEffect(() => {
      getProductDetail(params.productId)
-  }, [params])
-  console.log(detail)
+  }, [params, getProductDetail])
   return (<>
-  
+  {
+    detail ? <>
+    <SingleProductDetail product={detail}/>
+    </>: <>Loading.....</>
+  }
   </>);
 }
