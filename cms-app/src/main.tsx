@@ -7,7 +7,7 @@ import AuthProvider from './lib/provider/provider/AuthProvider';
 import { Provider } from "react-redux";
 import store from './config/store';
 
-
+// components
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>

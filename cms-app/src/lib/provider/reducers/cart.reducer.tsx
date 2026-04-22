@@ -3,18 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 const CartSclice = createSlice({
     name: "cart",
     initialState: {
-        cartItems: null,
+        cart: null,
     },
     reducers: {
-        addToCart: (state, action) => {
+        setCart(state, action) {
            // can never be async function, it is a pure function, it can only update the state, it cannot fetch data from api or do any side effect, it can only update the state based on the action payload
-              state.cartItems = action.payload;
-              
+              console.log(state, state.cart)
+              console.log(action)
+               
         }
     }
 })
 
 
 
-export const { addToCart } = CartSclice.actions;
+export const { setCart } = CartSclice.actions;
 export default CartSclice.reducer;

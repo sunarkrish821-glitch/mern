@@ -6,11 +6,7 @@ import { useAuth } from "../../lib/provider/hook/auth-hook";
 
 export default function AdminLayout() {
   const {loggedInUser} = useAuth()
-  
-
-
-
-    return (<>
+      return (<>
      <section className="w-full h-screen flex bg-stone-50">
        <aside className="w-70 bg-gray-200 p-18 flex-col gap-5 flex" >
      <div className="flex flex-col items-center justify-center w-full">
@@ -22,7 +18,7 @@ export default function AdminLayout() {
         <nav>
          <ul className="flex flex-col gap-2">
             <li className="w-full bg-gray-100 p-2 shadow-lg rounded text-lg font-semibold">
-               <NavLink to="/" className="flex items-center justify-center gap-2">
+               <NavLink to="/admin" className="flex items-center justify-center gap-2">
                  <LuCog className="text-gray-700 size-6"/>
                 Dashboard
                </NavLink>
@@ -69,3 +65,5 @@ export default function AdminLayout() {
      </section>
     </>)
 }
+
+//EOF (End of File)

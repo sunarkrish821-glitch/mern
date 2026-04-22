@@ -4,7 +4,7 @@ import CartReducer from '../lib/provider/reducers/cart.reducer';
 const store = configureStore({
   reducer: {
     // combine all reducers here
-    cartItems: CartReducer,
+    cart: CartReducer,
   },
 }); 
 
