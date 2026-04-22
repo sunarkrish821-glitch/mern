@@ -1,6 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { priceFormat } from '../../lib/provider/utilities/helper';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '../../config/store';
+import { getAllProducts } from '../../lib/provider/reducers/product.reducer';
+import type { IProductDetail } from '../products/ProductDetail';
+
+
+
 
 export default function CreateOrder() {
+    const dispatch = useDispatch<AppDispatch>();
+    // set all products in the state, we will fetch products from the api in the future and set it here
+
+
+    const allProducts = useSelector((rootStore: RootState) => {
+        return rootStore?.product?.allProducts as Array<IProductDetail> | null
+    }); 
+
+
+
     const [items, setItems] = useState([{ product: '', unit: 1, rate: 0, total: 0 }]);
     const [customer, setCustomer] = useState('');
 
@@ -25,8 +43,17 @@ export default function CreateOrder() {
 
     const subtotal = items.reduce((sum, item) => sum + item.total, 0);
     const discount = 0;
-    const tax = subtotal * 0.1;
+    const tax = subtotal * 0.13;
     const total = subtotal - discount + tax;
+
+
+    // first load
+    useEffect(() => {
+        // populate all products and customers for search dropdowns
+             dispatch(getAllProducts({limit: 198, skip: 0}))
+    }, []);
+
+    // console.log(allProducts)
 
     return (
         <div className="flex h-screen">
@@ -95,12 +122,12 @@ export default function CreateOrder() {
                             <td className="border border-gray-300 p-2">{discount.toFixed(2)}</td>
                         </tr>
                         <tr>
-                            <td colSpan={4} className="border border-gray-300 p-2 text-right font-bold">Tax (10%):</td>
-                            <td className="border border-gray-300 p-2">{tax.toFixed(2)}</td>
+                            <td colSpan={4} className="border border-gray-300 p-2 text-right font-bold">Tax (13%):</td>
+                            <td className="border border-gray-300 p-2">{priceFormat(tax)}</td>
                         </tr>
                         <tr className="bg-gray-100">
                             <td colSpan={4} className="border border-gray-300 p-2 text-right font-bold">Total:</td>
-                            <td className="border border-gray-300 p-2 font-bold">{total.toFixed(2)}</td>
+                            <td className="border border-gray-300 p-2 font-bold">{priceFormat(total)}</td>
                         </tr>
                     </tfoot>
                 </table>
