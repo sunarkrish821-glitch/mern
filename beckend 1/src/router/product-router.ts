@@ -15,7 +15,8 @@ const productCtrl = new ProductController()
 // .fields([{name: FieldName, maxCount: number}])
 
 // localhost:9005/products/categories
-productRouter.get("/categories", AuthCheck(['admin']), productCtrl.getAllCategories)
+productRouter.get("/categories", productCtrl.getAllCategories)
+productRouter.get("/category/:slug", productCtrl.getAllProductByCatSlug)
 // localhost:9005/products/home
 productRouter.get("/home", productCtrl.getAllProducts);
 productRouter.get("/:productSlug/home", productCtrl.homeGetProductDetailBySlug);
@@ -32,15 +33,16 @@ productRouter.post("/",AuthCheck(['admin']),uploader("/products").fields([
 // localhost:9005/products
 productRouter.get("/", AuthCheck(["admin"]), productCtrl.getAllProductsByUser);
 productRouter.get("/:productSlug", AuthCheck(['admin']), productCtrl.getProductDetailBySlug);
-productRouter.put(
-  "/:productSlug",
-  AuthCheck(["admin"]),
-  uploader("/products").fields([
+productRouter.put("/:productSlug", AuthCheck(["admin"]), uploader("/products").fields([
     { name: "images", maxCount: 10 },
     { name: "thumbnail", maxCount: 1 },
   ]),
-  bodyValidator(ProductCreateDTO),
-  productCtrl.updateProduct
+  bodyValidator(ProductCreateDTO), productCtrl.updateProduct
 );
-
-export default productRouter;
+productRouter.delete('/:productId', AuthCheck(['admin']), productCtrl.deleteProductById)
+export default productRouter
+  // Model => name, category, price, discount, brand, description
+// put => All fields of a model are passed from Form for update
+  // name, category, price(changed), discount, brand, description(changed)
+// patch => Only pass those fields which you are updating 
+  // price(changed), description(changed)

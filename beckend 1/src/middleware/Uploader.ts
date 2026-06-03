@@ -32,6 +32,9 @@ const uploader = (dir='/') => {
   //   }
   // }
 
+  // cloudinary Service
+
+
   const multerObj = multer({
     // dest: "/path for your file"
     // storage: "configure your storage "

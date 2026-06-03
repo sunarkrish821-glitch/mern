@@ -5,12 +5,35 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import { AppConfig, Secrets } from "../config/app-env";
 import { AuthRequest } from "../types/Request";
+// import cloudinary from "../config/cloudinary";
+import EmailService from "../services/EmailService";
 
 class AuthController {
   async register(req: Request, res: Response, next: NextFunction) {
     try {
+      
+      // console.log(req.body, req.file)
+
+      // console.log(cloudinary.url(req.file?.filename as string, {
+      //   transformation: [
+      //     {aspect_ratio:1.0,width:1000}
+      //   ]
+      // }))
       const data = AuthService.mapUserDataForRegister(req);
       const user = await AuthService.storeUser(data);
+
+      // notify user account registered
+      const emailSvc = new EmailService();
+      emailSvc.sendEmail({
+        to: user.email, 
+        sub: "Your account has been registered.",
+        body: `<strong>Dear ${user.firstName}</strong>,<br/>
+          <p>Your account has been registerd. Please login to continue..</p>
+          <div>
+            <strong>Admin System</strong>
+          </div>
+        `
+      })
 
       res.json({
         data: user,

@@ -261,3 +261,46 @@ Request ===> Router ===> [Middleware] ==> Controller(business logic) <=====> Mod
       "role": "admin" // or "moderator", or "user"
     }
 ```
+
+```json
+  {
+    "id": 1,
+    "title": "Essence Mascara Lash Princess",
+    "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+    "category": "beauty",
+    "price": 9.99,
+    "discountPercentage": 7.17,
+    "stock": 5,
+    "tags": [
+      "beauty",
+      "mascara"
+    ],
+    "brand": "Essence",
+    "weight": 2,
+    "dimensions": {
+      "width": 23.17,
+      "height": 14.43,
+      "depth": 28.01
+    },
+    "warrantyInformation": "1 month warranty",
+    "shippingInformation": "Ships in 1 month",
+    "availabilityStatus": "Low Stock",
+    "returnPolicy": "30 days return policy",
+    "minimumOrderQuantity": 24,
+    "thumbnail": "...",
+    "images": ["...", "...", "..."]
+  }
+```
+
+## SMTP Server
+- `gmail`, `SES`, `sendgrid`, àny other`
+  -   host,
+  -   port,
+  -   auth
+    -   username
+    -   password
+  - from address  
+
+
+
+  socket.io for real time communication 

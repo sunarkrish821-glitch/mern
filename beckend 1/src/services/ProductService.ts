@@ -83,6 +83,7 @@ class ProductService {
 
     data.updatedBy = req?.loggedInUser?._id;
 
+    // put => property => obj mapp
     return data;
   }
 
@@ -171,5 +172,14 @@ class ProductService {
       throw except
     }
   }
+
+  static async deleteSingleRowByFilter(filter: Record<string, any>) {
+    try {
+      const del = await ProductModel.findOneAndDelete(filter)
+      return del;
+    } catch(exception) {
+      throw exception
+    }
+  }
 }
-export default ProductService;
+export default ProductService
