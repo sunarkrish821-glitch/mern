@@ -13,7 +13,7 @@ export default function AdminLayout() {
         <aside className="w-100 bg-gray-200 p-10 flex-col gap-5 flex">
           <div className="flex flex-col items-center justify-center w-full">
             <img src={logo} alt="logo" className="size-25 rounded-full" />
-            <PageTitle pageTitle="Admin Panel" className="...">Admin Panel</PageTitle>
+            <PageTitle pageTitle="Admin Panel" className="text-gray-950! text-shadow-lg" />
           </div>
 
           <nav>
@@ -34,8 +34,10 @@ export default function AdminLayout() {
                 </NavLink>
               </li>
               <li className="rounded text-lg font-semibold shadow-lg w-full bg-gray-100 p-2 flex gap-2 items-center">
-                <LuUsers className="text-gray-700 size-6" />
-                Users
+                <NavLink to="/admin/users" className={'flex gap-2 items-center'}>
+                  <LuUsers className="text-gray-700 size-6" />
+                  Users
+                </NavLink>
               </li>
               <li className="rounded text-lg font-semibold shadow-lg w-full bg-gray-100 p-2 flex gap-2 items-center">
                 <NavLink

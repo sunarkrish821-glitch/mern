@@ -43,6 +43,7 @@ export interface IAddress {
 
 export interface IUserDetail {
   id: number;
+  _id:string;
   firstName: string,
   lastName: string,
   maidenName: string,
@@ -52,7 +53,9 @@ export interface IUserDetail {
   username: string,
   birthDate: string,
   
-  image: string,
+  image: {
+    filename: string
+  },
 
   address: IAddress,
   university: string,
