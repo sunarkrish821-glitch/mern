@@ -8,6 +8,8 @@ import path from "path";
 
 // mongodb connect 
 import "./config/mongodb";
+// sql import 
+import "./config/sqldb"
 
 // express application
 const app: Application = express();     // server-side application
@@ -39,6 +41,7 @@ app.use(express.urlencoded({
 
 
 app.use('/assets', express.static(path.join(__dirname, "../public/")))
+// app.use("/assets", express.static(path.join(process.cwd(), "public")));
 
 
 // loading the router

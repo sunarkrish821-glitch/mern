@@ -6,6 +6,7 @@ const userCtrl = new UserController();
 const userRouter = Router()
 
 
-userRouter.get("/", AuthCheck(['admin']), userCtrl.getAllUserList)
+userRouter.get("/", AuthCheck(), userCtrl.getAllUserList)
+userRouter.get("/:userId", AuthCheck(), userCtrl.getUserDetailById)
 
 export default userRouter;

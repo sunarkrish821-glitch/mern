@@ -292,15 +292,30 @@ Request ===> Router ===> [Middleware] ==> Controller(business logic) <=====> Mod
   }
 ```
 
-## SMTP Server
-- `gmail`, `SES`, `sendgrid`, àny other`
-  -   host,
-  -   port,
-  -   auth
-    -   username
-    -   password
-  - from address  
+# SMTP Server 
+  - `gmail`, `SES`, `sendgrid`, `any other`
+  - host, 
+  - port 
+  - auth
+    - username 
+    - password
+  - from address
+
+
+# Editor 
+  - cli 
+  - notepad 
+  - notepad++
+  - Dreamweaver (Adobe)
+  - Sublime text - atom, bracket 
+  - Vs-Code (Open Source)
+  - Jetbrains IDE (webstorm, phpstorm, Android studio, idea, )
+  - AI 
+    - Cursor 
+    - Antigravity
+    - Windsurf
 
 
 
-  socket.io for real time communication 
+
+  

@@ -26,7 +26,6 @@ class AuthService {
     const user = new UserModel(data);
     return await user.save(); // save() -=> insert, existing data .save() => update
   }
-
   
 }
 

@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import UserModel from "../model/UserModel";
+import UserService from "../services/UserService";
 
 class UserController{
   async getAllUserList(req: Request, res: Response, next: NextFunction) {
@@ -17,6 +18,20 @@ class UserController{
         meta: {
           pagination: {}
         }
+      })
+    } catch(exception) {
+      next(exception)
+    }
+  }
+  async getUserDetailById(req: Request, res: Response, next:NextFunction) {
+    try {
+      const userDetail = await UserService.getSingleRowByFile({
+        _id: req.params.userId as string
+      })
+      res.json({
+        data: userDetail,
+        message: "User Detail",
+        meta: null
       })
     } catch(exception) {
       next(exception)
